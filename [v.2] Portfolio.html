@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — The Depths</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Scroll progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- Ocean background canvas -->
+<canvas id="ocean-canvas"></canvas>
+
+<!-- Grain overlay -->
+<div class="grain"></div>
+
+<!-- Vignette -->
+<div class="vignette"></div>
+
+<!-- Navigation -->
+<nav>
+  <a href="#hero" class="nav-brand">✦ The Depths</a>
+  <ul class="nav-links">
+    <li><a href="#about">Lore</a></li>
+    <li><a href="#projects">Works</a></li>
+    <li><a href="#experience">Chronicle</a></li>
+    <li><a href="#contact">Summon</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ══ HERO ══════════════════════════════════════════════ -->
+  <section id="hero">
+
+    <div class="hero-sigil">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer ring -->
+        <circle cx="50" cy="50" r="46" stroke="#c9a84c" stroke-width="0.8" stroke-dasharray="4 3" opacity="0.5"/>
+        <!-- Inner ring -->
+        <circle cx="50" cy="50" r="36" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+        <!-- Central star -->
+        <path d="M50 14 L53.5 44 L82 38 L58 56 L74 82 L50 62 L26 82 L42 56 L18 38 L46.5 44 Z"
+              fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+        <!-- Core dot -->
+        <circle cx="50" cy="50" r="3" fill="#c9a84c" opacity="0.9"/>
+        <!-- Rune marks -->
+        <text x="50" y="8" text-anchor="middle" font-family="serif" font-size="6" fill="#c9a84c" opacity="0.4">ᚦ</text>
+        <text x="92" y="52" text-anchor="middle" font-family="serif" font-size="6" fill="#c9a84c" opacity="0.4">ᚱ</text>
+        <text x="50" y="98" text-anchor="middle" font-family="serif" font-size="6" fill="#c9a84c" opacity="0.4">ᛟ</text>
+        <text x="8" y="52" text-anchor="middle" font-family="serif" font-size="6" fill="#c9a84c" opacity="0.4">ᚢ</text>
+      </svg>
+    </div>
+
+    <p class="hero-eyebrow">From the depths below</p>
+    <h1 class="hero-name char-reveal" data-text="Your Name">Your Name</h1>
+    <p class="hero-title">Developer · Designer · Creator</p>
+    <p class="hero-desc">
+      Forged in the deep waters between code and craft.
+      Building experiences that endure the tide.
+    </p>
+
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View My Works</a>
+      <a href="#contact" class="btn btn-ghost">Summon Me</a>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Descend</span>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ══════════════════════════════════════════════ -->
+  <section id="about">
+    <div class="rune-divider"><span>ᚦᚱᚢ ᛟᚱᛞ</span></div>
+
+    <div class="reveal">
+      <div class="section-header">
+        <span class="section-label">Who I Am</span>
+        <h2 class="section-title">The Diver's Chronicle</h2>
+        <div class="section-line"></div>
+      </div>
+    </div>
+
+    <div class="about-grid reveal">
+      <div class="about-portrait">
+        <div class="portrait-frame">
+          <div class="portrait-corner tl"></div>
+          <div class="portrait-corner tr"></div>
+          <div class="portrait-corner bl"></div>
+          <div class="portrait-corner br"></div>
+          <div class="portrait-bg">
+            <!-- Deepwoken-inspired silhouette -->
+            <svg class="portrait-silhouette" viewBox="0 0 140 220" width="120" fill="none">
+              <!-- Cloak -->
+              <path d="M70 40 C45 50 25 80 20 130 L15 200 L125 200 L120 130 C115 80 95 50 70 40Z"
+                    fill="#c9a84c" opacity="0.15"/>
+              <!-- Body -->
+              <path d="M70 40 C55 45 48 65 48 85 L52 130 L88 130 L92 85 C92 65 85 45 70 40Z"
+                    fill="#c9a84c" opacity="0.25"/>
+              <!-- Head -->
+              <circle cx="70" cy="28" r="16" fill="#c9a84c" opacity="0.2"/>
+              <!-- Hood shadow -->
+              <path d="M54 20 C54 10 86 10 86 20 L84 34 C80 28 60 28 56 34Z"
+                    fill="#c9a84c" opacity="0.3"/>
+              <!-- Eyes glow -->
+              <ellipse cx="64" cy="28" rx="3" ry="2" fill="#2a7faa" opacity="0.8"/>
+              <ellipse cx="76" cy="28" rx="3" ry="2" fill="#2a7faa" opacity="0.8"/>
+              <!-- Sword -->
+              <line x1="95" y1="60" x2="118" y2="180" stroke="#c9a84c" stroke-width="2" opacity="0.4"/>
+              <path d="M93 58 L100 52 L105 64Z" fill="#c9a84c" opacity="0.35"/>
+              <!-- Runes on cloak -->
+              <text x="58" y="110" font-family="serif" font-size="10" fill="#c9a84c" opacity="0.3">ᚦ</text>
+              <text x="72" y="125" font-family="serif" font-size="8" fill="#c9a84c" opacity="0.2">ᚱ</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="about-stat-row">
+          <div class="about-stat">
+            <span class="about-stat-num">5+</span>
+            <span class="about-stat-label">Years</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-num">30+</span>
+            <span class="about-stat-label">Projects</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-num">∞</span>
+            <span class="about-stat-label">Depth</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <p>
+          A builder who dwells in the space between systems and craft —
+          where clean code meets dark aesthetics and every interaction
+          is deliberate as a sword draw.
+        </p>
+        <p>
+          Specialising in game development, interactive web experiences,
+          and the kind of UI that makes people stop and look twice.
+          If it needs to feel alive, I'm the one to call.
+        </p>
+        <p>
+          Currently accepting commissions and collaborations.
+          The deep waters are quiet, but never still.
+        </p>
+
+        <div class="skill-list">
+          <span class="skill-tag">Roblox Lua</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Game Design</span>
+          <span class="skill-tag">UI/UX</span>
+          <span class="skill-tag">Systems Architecture</span>
+          <span class="skill-tag">Combat Systems</span>
+          <span class="skill-tag">VFX</span>
+          <span class="skill-tag">Animation</span>
+          <span class="skill-tag">Node.js</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROJECTS ═══════════════════════════════════════════ -->
+  <section id="projects">
+    <div class="rune-divider"><span>ᚢᛞᚱ ᚦᚱᛟ</span></div>
+
+    <div class="reveal">
+      <div class="section-header">
+        <span class="section-label">My Works</span>
+        <h2 class="section-title">The Reliquary</h2>
+        <div class="section-line"></div>
+      </div>
+    </div>
+
+    <div class="projects-grid reveal">
+
+      <!-- Featured -->
+      <div class="project-card featured">
+        <div class="card-shine"></div>
+        <div>
+          <div class="project-glyph">⚔</div>
+          <p class="project-category">Game Development · Featured</p>
+          <h3 class="project-name">Samurai Champloo Combat System</h3>
+          <p class="project-desc">
+            A fully server-authoritative combat system for Roblox, built in the
+            spirit of Jin and Mugen. Features hitstop, style switching, clash detection,
+            burst dashing, and layered VFX — all exploit-resistant.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Roblox Lua</span>
+            <span class="project-tag">Server Auth</span>
+            <span class="project-tag">VFX</span>
+            <span class="project-tag">FSM</span>
+            <span class="project-tag">Hitbox System</span>
+          </div>
+          <a href="#" class="project-link">View Project</a>
+        </div>
+        <div class="project-visual">
+          <div class="project-visual-inner">
+            <svg viewBox="0 0 200 180" width="180" fill="none">
+              <!-- Crossed swords -->
+              <line x1="30" y1="30" x2="170" y2="150" stroke="#c9a84c" stroke-width="3"/>
+              <line x1="170" y1="30" x2="30" y2="150" stroke="#c9a84c" stroke-width="3"/>
+              <!-- Spark lines -->
+              <line x1="100" y1="90" x2="120" y2="60" stroke="#e8c86a" stroke-width="1" opacity="0.6"/>
+              <line x1="100" y1="90" x2="130" y2="85" stroke="#e8c86a" stroke-width="1" opacity="0.5"/>
+              <line x1="100" y1="90" x2="115" y2="115" stroke="#e8c86a" stroke-width="1" opacity="0.4"/>
+              <line x1="100" y1="90" x2="80" y2="65" stroke="#e8c86a" stroke-width="1" opacity="0.5"/>
+              <circle cx="100" cy="90" r="6" fill="#c9a84c" opacity="0.8"/>
+              <!-- Glyph rings -->
+              <circle cx="100" cy="90" r="35" stroke="#c9a84c" stroke-width="0.5" stroke-dasharray="3 4" opacity="0.3"/>
+              <circle cx="100" cy="90" r="60" stroke="#c9a84c" stroke-width="0.3" stroke-dasharray="2 6" opacity="0.15"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="card-shine"></div>
+        <div class="project-glyph">🌊</div>
+        <p class="project-category">Web · Interactive</p>
+        <h3 class="project-name">Deepworld UI Kit</h3>
+        <p class="project-desc">
+          A dark fantasy component library — buttons, cards, modals, and data visualisations
+          built for games that live in the dark.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">React</span>
+          <span class="project-tag">CSS</span>
+          <span class="project-tag">Design System</span>
+        </div>
+        <a href="#" class="project-link">View Project</a>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="card-shine"></div>
+        <div class="project-glyph">✦</div>
+        <p class="project-category">Tool · Roblox</p>
+        <h3 class="project-name">Abyss Data Service</h3>
+        <p class="project-desc">
+          A robust DataStore wrapper with automatic retry, versioning, session locking,
+          and corruption recovery. Built for live games.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Roblox Lua</span>
+          <span class="project-tag">DataStore</span>
+          <span class="project-tag">Server</span>
+        </div>
+        <a href="#" class="project-link">View Project</a>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="card-shine"></div>
+        <div class="project-glyph">⚗</div>
+        <p class="project-category">Game Design</p>
+        <h3 class="project-name">Progression Architecture</h3>
+        <p class="project-desc">
+          A modular skill tree and mantra system — inspired by Deepwoken's obtainment loop —
+          built for high replayability and emergent builds.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Systems Design</span>
+          <span class="project-tag">Lua</span>
+          <span class="project-tag">Balancing</span>
+        </div>
+        <a href="#" class="project-link">View Project</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ EXPERIENCE ═════════════════════════════════════════ -->
+  <section id="experience">
+    <div class="rune-divider"><span>ᛟᚱᛞ ᚦᚱᚢ</span></div>
+
+    <div class="reveal">
+      <div class="section-header">
+        <span class="section-label">Chronicle</span>
+        <h2 class="section-title">Depths Descended</h2>
+        <div class="section-line"></div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2023 — Present</p>
+        <h3 class="timeline-role">Lead Game Developer</h3>
+        <p class="timeline-company">Independent / Freelance</p>
+        <p class="timeline-desc">
+          Architecting combat systems, progression loops, and live-service backend
+          infrastructure for Roblox titles. Specialised in multiplayer-safe,
+          server-authoritative designs that hold up under player pressure.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2022 — 2023</p>
+        <h3 class="timeline-role">UI/UX Developer</h3>
+        <p class="timeline-company">Studio Undercurrent</p>
+        <p class="timeline-desc">
+          Designed and built dark fantasy UI systems for two shipped titles.
+          Responsible for the full player HUD, inventory system, and
+          cinematic UI transitions.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2020 — 2022</p>
+        <h3 class="timeline-role">Frontend Developer</h3>
+        <p class="timeline-company">Various Clients</p>
+        <p class="timeline-desc">
+          Built interactive web experiences, portfolio sites, and internal tooling
+          for clients across gaming, creative industries, and tech.
+          Obsessed with motion and the details no one notices until they're gone.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ════════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="rune-divider"><span>ᚢᛞᚱ ᛟᚱᛞ</span></div>
+
+    <div class="reveal contact-inner">
+      <div class="section-header" style="text-align:center">
+        <span class="section-label">Reach Out</span>
+        <h2 class="section-title">Summon Me</h2>
+        <div class="section-line" style="margin:1rem auto 0"></div>
+      </div>
+
+      <p class="contact-quote" style="margin-top:2.5rem">
+        Those who seek the depths are welcomed.
+        Whether it's a commission, collaboration, or just a conversation —
+        the channel is open.
+      </p>
+
+      <div style="margin-top:3rem; display:flex; justify-content:center;">
+        <a href="/cdn-cgi/l/email-protection#2c5543595e6c49414d4540024f4341" class="btn btn-primary">Send a Message</a>
+      </div>
+
+      <div class="contact-links">
+        <a href="#" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="#" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 00-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 00-5.487 0 12.36 12.36 0 00-.617-1.23A.077.077 0 008.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 00-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 00.031.055 20.03 20.03 0 005.993 2.98.078.078 0 00.084-.026c.462-.62.874-1.275 1.226-1.963.021-.04.001-.088-.041-.104a13.201 13.201 0 01-1.872-.878.075.075 0 01-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 01.078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 01.079.009c.12.098.245.195.372.288a.075.075 0 01-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 00-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 00.084.028 19.963 19.963 0 006.002-2.981.076.076 0 00.032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 00-.031-.028z"/></svg>
+          Discord
+        </a>
+        <a href="#" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="#" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+          Twitter
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>✦ Forged in the deep — Your Name — MMX X IV ✦</p>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+// ══════════════════════════════════════════════════════════
+//  SCROLL PROGRESS BAR
+// ══════════════════════════════════════════════════════════
+const progressBar = document.getElementById('scrollProgress');
+function updateProgress() {
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  if (progressBar && total > 0)
+    progressBar.style.width = (window.scrollY / total * 100) + '%';
+  requestAnimationFrame(updateProgress);
+}
+updateProgress();
+
+// ══════════════════════════════════════════════════════════
+//  CURSOR
+// ══════════════════════════════════════════════════════════
+const cursor      = document.getElementById('cursor');
+const cursorTrail = document.getElementById('cursorTrail');
+let mx = window.innerWidth/2, my = window.innerHeight/2;
+let tx = mx, ty = my;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+gsap.ticker.add(() => {
+  if (!cursor) return;
+  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  tx += (mx - tx) * 0.12; ty += (my - ty) * 0.12;
+  if (cursorTrail) { cursorTrail.style.left = tx + 'px'; cursorTrail.style.top = ty + 'px'; }
+});
+
+document.querySelectorAll('a, button, .project-card, .skill-tag, .btn').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    gsap.to(cursor, { scale:2.2, duration:0.25, ease:'back.out(2)' });
+    cursor.style.borderColor = '#e8c86a';
+  });
+  el.addEventListener('mouseleave', () => {
+    gsap.to(cursor, { scale:1, duration:0.25, ease:'back.out(2)' });
+    cursor.style.borderColor = '#c9a84c';
+  });
+});
+
+// ══════════════════════════════════════════════════════════
+//  OCEAN CANVAS
+// ══════════════════════════════════════════════════════════
+const canvas = document.getElementById('ocean-canvas');
+const ctx    = canvas.getContext('2d');
+let W, H, t = 0;
+
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', () => { resize(); ScrollTrigger.refresh(); });
+
+// ── Sunset water wave layers ──────────────────────────────
+const waveLayers = [
+  { amp:0.018, freq:0.5,  speed:0.0006, opacity:0.18, color:[180, 60,  20] },  // deep crimson
+  { amp:0.012, freq:0.8,  speed:0.0009, opacity:0.12, color:[220, 100, 30] },  // burnt orange
+  { amp:0.022, freq:0.3,  speed:0.0004, opacity:0.10, color:[140, 40,  50] },  // dark red
+  { amp:0.008, freq:1.2,  speed:0.0013, opacity:0.08, color:[255, 140, 50] },  // orange shimmer
+];
+
+// ── Firefly/ember particles ───────────────────────────────
+const particles = Array.from({ length: 55 }, () => ({
+  x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight,
+  r: Math.random()*1.8+0.4,
+  sp: Math.random()*0.25+0.05,
+  drift: (Math.random()-0.5)*0.4,
+  opacity: Math.random()*0.35+0.08,
+  pulse: Math.random()*Math.PI*2,
+  // warm ember colours
+  hue: Math.random() < 0.5 ? [255,160,40] : [255,210,80],
+}));
+
+// ── Clouds: slow drifting ellipses ────────────────────────
+const clouds = Array.from({ length: 7 }, (_, i) => ({
+  x: (i/7)*W + Math.random()*80,
+  y: H*(0.12 + Math.random()*0.22),
+  w: Math.random()*260+120,
+  h: Math.random()*40+18,
+  speed: Math.random()*0.12+0.04,
+  opacity: Math.random()*0.13+0.04,
+}));
+
+function drawSunset() {
+  ctx.clearRect(0,0,W,H);
+
+  // ── Sky gradient: deep purple-navy top → orange-red horizon → dark base ──
+  const sky = ctx.createLinearGradient(0,0,0,H);
+  sky.addColorStop(0.00, '#0d0520');   // deep violet-black at zenith
+  sky.addColorStop(0.18, '#1a0a35');   // dark purple
+  sky.addColorStop(0.38, '#3d1020');   // wine red
+  sky.addColorStop(0.54, '#7a2510');   // burnt sienna
+  sky.addColorStop(0.65, '#c44a10');   // deep orange at horizon
+  sky.addColorStop(0.72, '#e8721a');   // bright orange-gold horizon band
+  sky.addColorStop(0.80, '#8b2510');   // drops back to dark red below horizon
+  sky.addColorStop(1.00, '#0a0508');   // near black at bottom
+  ctx.fillStyle = sky;
+  ctx.fillRect(0,0,W,H);
+
+  // ── Sun glow: radial bloom just above horizon ─────────────
+  const horizonY = H * 0.70;
+  const sunX     = W * 0.50;
+  const sunR     = Math.min(W,H) * 0.36;
+
+  const sunGlow = ctx.createRadialGradient(sunX, horizonY, 0, sunX, horizonY, sunR);
+  sunGlow.addColorStop(0.00, 'rgba(255,230,120,0.55)');
+  sunGlow.addColorStop(0.08, 'rgba(255,170, 40,0.40)');
+  sunGlow.addColorStop(0.22, 'rgba(220, 80, 10,0.22)');
+  sunGlow.addColorStop(0.50, 'rgba(160, 30, 10,0.08)');
+  sunGlow.addColorStop(1.00, 'rgba(0,0,0,0)');
+  ctx.fillStyle = sunGlow;
+  ctx.fillRect(0,0,W,H);
+
+  // ── Sun disc ──────────────────────────────────────────────
+  const discR  = Math.min(W,H)*0.042 + Math.sin(t*0.002)*1.5;
+  const disc   = ctx.createRadialGradient(sunX,horizonY,0, sunX,horizonY,discR);
+  disc.addColorStop(0,   'rgba(255,245,180,0.95)');
+  disc.addColorStop(0.5, 'rgba(255,200, 60,0.85)');
+  disc.addColorStop(1,   'rgba(255,120, 20,0)');
+  ctx.beginPath();
+  ctx.arc(sunX, horizonY, discR*1.4, 0, Math.PI*2);
+  ctx.fillStyle = disc;
+  ctx.fill();
+
+  // ── Crepuscular rays ──────────────────────────────────────
+  const rayCount = 8;
+  for (let i=0; i<rayCount; i++) {
+    const angle  = ((i/rayCount)-0.5)*Math.PI*0.7 + Math.sin(t*0.0003+i*0.8)*0.04;
+    const len    = Math.min(W,H)*1.1;
+    const rayX   = sunX + Math.sin(angle)*len;
+    const rayY   = horizonY - Math.cos(angle)*len;
+    const spread = len * 0.15;
+    const perpX  = Math.cos(angle);
+    const perpY  = Math.sin(angle);
+    const rayOpacity = (0.028 + Math.sin(t*0.0007+i)*0.008) * (1 - Math.abs((i/rayCount)-0.5)*1.2);
+
+    const rayGrad = ctx.createLinearGradient(sunX,horizonY, rayX,rayY);
+    rayGrad.addColorStop(0,   `rgba(255,200,80,${rayOpacity*2})`);
+    rayGrad.addColorStop(0.3, `rgba(255,140,40,${rayOpacity})`);
+    rayGrad.addColorStop(1,   'rgba(255,100,20,0)');
+
+    ctx.beginPath();
+    ctx.moveTo(sunX - perpX*4, horizonY - perpY*4);
+    ctx.lineTo(rayX - perpX*spread, rayY - perpY*spread);
+    ctx.lineTo(rayX + perpX*spread, rayY + perpY*spread);
+    ctx.lineTo(sunX + perpX*4, horizonY + perpY*4);
+    ctx.closePath();
+    ctx.fillStyle = rayGrad;
+    ctx.fill();
+  }
+
+  // ── Clouds ────────────────────────────────────────────────
+  clouds.forEach(c => {
+    c.x += c.speed;
+    if (c.x > W + c.w) c.x = -c.w;
+    const cx = c.x, cy = c.y;
+    const cGrad = ctx.createRadialGradient(cx,cy,0, cx,cy,c.w*0.5);
+    cGrad.addColorStop(0,   `rgba(255,160,60,${c.opacity*1.6})`);
+    cGrad.addColorStop(0.4, `rgba(200,80,30,${c.opacity})`);
+    cGrad.addColorStop(1,   'rgba(100,20,10,0)');
+    ctx.save();
+    ctx.scale(1, c.h/c.w);
+    ctx.beginPath();
+    ctx.arc(cx, cy*(c.w/c.h), c.w*0.5, 0, Math.PI*2);
+    ctx.fillStyle = cGrad;
+    ctx.fill();
+    ctx.restore();
+  });
+
+  // ── Horizon shimmer band ──────────────────────────────────
+  const shimmer = ctx.createLinearGradient(0, horizonY-6, 0, horizonY+6);
+  shimmer.addColorStop(0,   'rgba(255,200,80,0)');
+  shimmer.addColorStop(0.5, `rgba(255,210,100,${0.18 + Math.sin(t*0.003)*0.06})`);
+  shimmer.addColorStop(1,   'rgba(255,120,30,0)');
+  ctx.fillStyle = shimmer;
+  ctx.fillRect(0, horizonY-6, W, 12);
+
+  // ── Water waves below horizon ─────────────────────────────
+  waveLayers.forEach(layer => {
+    ctx.beginPath(); ctx.moveTo(0,H);
+    for (let x=0; x<=W; x+=3) {
+      const nx=x/W, phase=t*layer.speed*Math.PI*2;
+      const waveY = horizonY + (H - horizonY)*(0.15
+        + layer.amp*Math.sin(nx*Math.PI*2*layer.freq+phase)
+        + layer.amp*0.5*Math.sin(nx*Math.PI*3.7*layer.freq+phase*1.3));
+      ctx.lineTo(x, waveY);
+    }
+    ctx.lineTo(W,H); ctx.closePath();
+    const [r,g,b]=layer.color;
+    ctx.fillStyle=`rgba(${r},${g},${b},${layer.opacity})`;
+    ctx.fill();
+  });
+
+  // ── Sun reflection column on water ───────────────────────
+  const reflW  = 60 + Math.sin(t*0.005)*15;
+  const refl   = ctx.createLinearGradient(sunX, horizonY, sunX, H);
+  refl.addColorStop(0,   `rgba(255,200,80,${0.30 + Math.sin(t*0.004)*0.05})`);
+  refl.addColorStop(0.3, `rgba(220,120,30,0.14)`);
+  refl.addColorStop(0.7, `rgba(160, 60,10,0.06)`);
+  refl.addColorStop(1,   'rgba(0,0,0,0)');
+
+  ctx.save();
+  // Wavy reflection mask
+  ctx.beginPath();
+  ctx.moveTo(sunX - reflW, horizonY);
+  for (let y=horizonY; y<=H; y+=4) {
+    const prog  = (y-horizonY)/(H-horizonY);
+    const wobble = Math.sin(t*0.01+y*0.04)*8*prog;
+    const halfW  = reflW*(0.5+prog*0.8);
+    ctx.lineTo(sunX - halfW + wobble, y);
+  }
+  for (let y=H; y>=horizonY; y-=4) {
+    const prog  = (y-horizonY)/(H-horizonY);
+    const wobble = Math.sin(t*0.01+y*0.04)*8*prog;
+    const halfW  = reflW*(0.5+prog*0.8);
+    ctx.lineTo(sunX + halfW + wobble, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = refl;
+  ctx.fill();
+  ctx.restore();
+
+  // ── Ember/firefly particles drifting upward ───────────────
+  particles.forEach(p => {
+    p.y -= p.sp; p.x += p.drift; p.pulse += 0.025;
+    if (p.y < -10) { p.y = H+10; p.x = Math.random()*W; }
+    if (p.x < -10 || p.x > W+10) p.x = Math.random()*W;
+    const alpha = p.opacity*(0.5 + 0.5*Math.sin(p.pulse));
+    const [r,g,b] = p.hue;
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${r},${g},${b},${alpha})`; ctx.fill();
+  });
+
+  // ── Stars — faint, only in upper sky ─────────────────────
+  // Pre-seeded so they don't flicker position
+  if (!drawSunset.stars) {
+    drawSunset.stars = Array.from({length:80}, ()=>({
+      x:Math.random(), y:Math.random()*0.32,
+      r:Math.random()*0.9+0.3, twinkle:Math.random()*Math.PI*2,
+      speed:Math.random()*0.02+0.008,
+    }));
+  }
+  drawSunset.stars.forEach(s => {
+    s.twinkle += s.speed;
+    const alpha = (0.12+0.10*Math.sin(s.twinkle)) * (1 - s.y/0.32*0.5);
+    ctx.beginPath(); ctx.arc(s.x*W, s.y*H, s.r, 0, Math.PI*2);
+    ctx.fillStyle=`rgba(255,230,200,${alpha})`; ctx.fill();
+  });
+
+  t++; requestAnimationFrame(drawSunset);
+}
+drawSunset();
+
+// ══════════════════════════════════════════════════════════
+//  SMOOTH ANCHOR SCROLL
+// ══════════════════════════════════════════════════════════
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+    gsap.to(window, { scrollTo:{ y:target, offsetY:80 }, duration:1.4, ease:'power3.inOut' });
+  });
+});
+
+// ══════════════════════════════════════════════════════════
+//  PAGE LOAD CURTAIN (runs first, reveals everything)
+// ══════════════════════════════════════════════════════════
+const curtain = document.createElement('div');
+curtain.style.cssText = 'position:fixed;inset:0;background:#03050a;z-index:99999;pointer-events:none;';
+document.body.appendChild(curtain);
+gsap.to(curtain, { opacity:0, duration:1.1, delay:0.2, ease:'power2.out', onComplete:()=>curtain.remove() });
+
+// ══════════════════════════════════════════════════════════
+//  HERO ANIMATIONS (CSS-independent, GSAP only)
+// ══════════════════════════════════════════════════════════
+const tl = gsap.timeline({ delay: 0.4 });
+
+// Sigil
+tl.fromTo('.hero-sigil', { opacity:0, scale:0.7, rotation:-15 },
+  { opacity:1, scale:1, rotation:0, duration:1, ease:'back.out(1.5)' }, 0);
+
+// Eyebrow
+tl.fromTo('.hero-eyebrow', { opacity:0, y:20, letterSpacing:'0.8em' },
+  { opacity:1, y:0, letterSpacing:'0.5em', duration:0.9, ease:'power3.out' }, 0.3);
+
+// Hero name — char split
+const heroName = document.querySelector('.hero-name');
+if (heroName) {
+  const text = heroName.getAttribute('data-text') || heroName.textContent;
+  heroName.style.opacity = '1'; // make container visible
+  heroName.innerHTML = text.split('').map(ch =>
+    ch === ' '
+      ? '<span style="display:inline-block">&nbsp;</span>'
+      : `<span class="char" style="display:inline-block;opacity:0;transform:translateY(36px) rotateX(-25deg);transform-origin:top center">${ch}</span>`
+  ).join('');
+
+  tl.to('.hero-name .char', {
+    opacity:1, y:0, rotateX:0, duration:0.65, stagger:0.05, ease:'back.out(1.4)'
+  }, 0.5);
+
+  // Glitch on hover
+  heroName.addEventListener('mouseenter', () => {
+    heroName.classList.add('glitch');
+    setTimeout(() => heroName.classList.remove('glitch'), 400);
+  });
+}
+
+// Hero title
+tl.fromTo('.hero-title', { opacity:0, y:16 },
+  { opacity:1, y:0, duration:0.8, ease:'power3.out' }, 0.85);
+
+// Hero desc
+tl.fromTo('.hero-desc', { opacity:0, y:16 },
+  { opacity:1, y:0, duration:0.8, ease:'power3.out' }, 1.0);
+
+// CTA buttons
+tl.fromTo('.hero-cta .btn', { opacity:0, y:20, scale:0.95 },
+  { opacity:1, y:0, scale:1, duration:0.7, stagger:0.15, ease:'back.out(1.5)' }, 1.2);
+
+// Scroll hint
+tl.fromTo('.scroll-hint', { opacity:0 }, { opacity:1, duration:0.8 }, 1.8);
+
+// ══════════════════════════════════════════════════════════
+//  SCROLL ANIMATIONS — all use opacity:1 as end state
+// ══════════════════════════════════════════════════════════
+
+// Section headers
+gsap.utils.toArray('.section-header').forEach(el => {
+  gsap.fromTo(el, { opacity:0, y:35 },
+    { opacity:1, y:0, duration:1, ease:'power3.out',
+      scrollTrigger:{ trigger:el, start:'top 87%' } });
+});
+
+// Rune dividers
+gsap.utils.toArray('.rune-divider').forEach(el => {
+  gsap.fromTo(el, { opacity:0, scaleX:0 },
+    { opacity:0.5, scaleX:1, duration:1.2, ease:'power2.inOut',
+      transformOrigin:'center center',
+      scrollTrigger:{ trigger:el, start:'top 93%' } });
+});
+
+// Section lines
+gsap.utils.toArray('.section-line').forEach(el => {
+  gsap.fromTo(el, { scaleX:0, opacity:0 },
+    { scaleX:1, opacity:1, duration:0.9, ease:'power2.out', transformOrigin:'left center',
+      scrollTrigger:{ trigger:el, start:'top 93%' } });
+});
+
+// About portrait + text
+gsap.fromTo('.about-portrait', { opacity:0, x:-45 },
+  { opacity:1, x:0, duration:1.1, ease:'power3.out',
+    scrollTrigger:{ trigger:'.about-grid', start:'top 80%' } });
+gsap.fromTo('.about-text', { opacity:0, x:45 },
+  { opacity:1, x:0, duration:1.1, delay:0.12, ease:'power3.out',
+    scrollTrigger:{ trigger:'.about-grid', start:'top 80%' } });
+
+// Stat counters
+document.querySelectorAll('.about-stat-num').forEach(el => {
+  const raw = el.textContent.trim();
+  const num = parseFloat(raw);
+  if (isNaN(num)) return;
+  const suffix = raw.replace(String(num),'');
+  el.textContent = '0' + suffix;
+  ScrollTrigger.create({
+    trigger:el, start:'top 88%', once:true,
+    onEnter:() => gsap.to({ val:0 }, {
+      val:num, duration:1.8, ease:'power2.out',
+      onUpdate() { el.textContent = Math.round(this._targets[0].val) + suffix; }
+    })
+  });
+});
+
+// Skill tags
+gsap.fromTo('.skill-tag', { opacity:0, scale:0.8, y:8 },
+  { opacity:1, scale:1, y:0, duration:0.5, stagger:0.055, ease:'back.out(1.5)',
+    scrollTrigger:{ trigger:'.skill-list', start:'top 89%' } });
+
+// Project cards
+gsap.utils.toArray('.project-card').forEach((card, i) => {
+  gsap.fromTo(card, { opacity:0, y:38 },
+    { opacity:1, y:0, duration:0.85, ease:'power3.out', delay:(i%2)*0.1,
+      scrollTrigger:{ trigger:card, start:'top 91%' } });
+});
+
+// Timeline items
+gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+  gsap.fromTo(item, { opacity:0, x:-28 },
+    { opacity:1, x:0, duration:0.8, ease:'power3.out', delay:i*0.12,
+      scrollTrigger:{ trigger:item, start:'top 88%' } });
+});
+
+// Contact
+gsap.fromTo('#contact .section-header', { opacity:0, y:35 },
+  { opacity:1, y:0, duration:0.9, ease:'power3.out',
+    scrollTrigger:{ trigger:'#contact', start:'top 80%' } });
+gsap.fromTo('.contact-quote', { opacity:0, y:25 },
+  { opacity:1, y:0, duration:0.9, delay:0.15, ease:'power3.out',
+    scrollTrigger:{ trigger:'#contact', start:'top 80%' } });
+gsap.fromTo('#contact .btn', { opacity:0, y:20, scale:0.95 },
+  { opacity:1, y:0, scale:1, duration:0.7, delay:0.25, ease:'back.out(1.5)',
+    scrollTrigger:{ trigger:'#contact', start:'top 80%' } });
+gsap.fromTo('.contact-link', { opacity:0, y:18 },
+  { opacity:1, y:0, stagger:0.1, duration:0.6, ease:'power2.out',
+    scrollTrigger:{ trigger:'.contact-links', start:'top 91%' } });
+
+// ══════════════════════════════════════════════════════════
+//  PARALLAX (scrub)
+// ══════════════════════════════════════════════════════════
+gsap.to('.portrait-frame', {
+  y:-25, ease:'none',
+  scrollTrigger:{ trigger:'#about', start:'top bottom', end:'bottom top', scrub:2 }
+});
+
+gsap.utils.toArray('.project-card').forEach((card,i) => {
+  gsap.to(card, {
+    y: i%2===0 ? -10 : -16, ease:'none',
+    scrollTrigger:{ trigger:'#projects', start:'top bottom', end:'bottom top', scrub:i%2===0?1.5:2 }
+  });
+});
+
+// ══════════════════════════════════════════════════════════
+//  MAGNETIC BUTTONS
+// ══════════════════════════════════════════════════════════
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r=btn.getBoundingClientRect();
+    gsap.to(btn, { x:(e.clientX-r.left-r.width/2)*0.28, y:(e.clientY-r.top-r.height/2)*0.28, duration:0.35, ease:'power2.out' });
+  });
+  btn.addEventListener('mouseleave', () => gsap.to(btn, { x:0, y:0, duration:0.6, ease:'elastic.out(1,0.4)' }));
+});
+
+// ══════════════════════════════════════════════════════════
+//  CARD SHINE
+// ══════════════════════════════════════════════════════════
+document.querySelectorAll('.project-card').forEach(card => {
+  const shine = card.querySelector('.card-shine');
+  if (!shine) return;
+  card.addEventListener('mousemove', e => {
+    const r=card.getBoundingClientRect();
+    shine.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+    shine.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+  });
+  card.addEventListener('mouseleave', () => { shine.style.setProperty('--mx','50%'); shine.style.setProperty('--my','50%'); });
+});
+
+// ══════════════════════════════════════════════════════════
+//  FLOATING RUNES
+// ══════════════════════════════════════════════════════════
+const runeChars = ['ᚦ','ᚱ','ᚢ','ᛟ','ᚾ','ᛞ','ᛖ','ᚹ','ᚷ','ᛗ','ᛁ','ᛋ'];
+function spawnRune() {
+  const rune=document.createElement('div');
+  const dur=Math.random()*8+6;
+  rune.style.cssText=`position:fixed;pointer-events:none;user-select:none;font-family:var(--font-rune);color:var(--gold-dim);font-size:${Math.random()*14+10}px;z-index:3;left:${Math.random()*100}vw;bottom:-30px;opacity:0;animation:rune-drift ${dur}s linear forwards;`;
+  rune.textContent=runeChars[Math.floor(Math.random()*runeChars.length)];
+  document.body.appendChild(rune);
+  setTimeout(()=>rune.remove(), dur*1000+200);
+}
+setInterval(spawnRune, 1400);
+
+// ══════════════════════════════════════════════════════════
+//  HERO SIGIL MOUSE PARALLAX
+// ══════════════════════════════════════════════════════════
+const sigil = document.querySelector('.hero-sigil');
+document.addEventListener('mousemove', e => {
+  if (!sigil) return;
+  gsap.to(sigil, { x:(e.clientX/window.innerWidth-0.5)*18, y:(e.clientY/window.innerHeight-0.5)*18, duration:0.8, ease:'power2.out' });
+});
+
+// ══════════════════════════════════════════════════════════
+//  ACTIVE NAV + HIDE/SHOW
+// ══════════════════════════════════════════════════════════
+const navSections = document.querySelectorAll('section[id]');
+const navLinks    = document.querySelectorAll('.nav-links a');
+const nav         = document.querySelector('nav');
+let lastScroll    = 0;
+
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  // Active link
+  let current = '';
+  navSections.forEach(sec => { if (s >= sec.offsetTop - 250) current = sec.id; });
+  navLinks.forEach(link => { link.style.color = link.getAttribute('href')==='#'+current ? 'var(--gold)' : ''; });
+  // Hide/show nav
+  if (s > lastScroll+8 && s > 120) gsap.to(nav, { y:-80, duration:0.4, ease:'power2.in' });
+  else if (s < lastScroll-8)       gsap.to(nav, { y:0,   duration:0.5, ease:'power2.out' });
+  lastScroll = s;
+}, { passive:true });
+</script>
+</body>
+</html>
